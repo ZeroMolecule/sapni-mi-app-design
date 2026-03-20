@@ -2,6 +2,8 @@
 
 The design system for the **Šapni Mi** app — a warm, earthy UI kit built on Flutter's `ThemeExtension` system.
 
+**[→ Widgetbook component catalogue](https://zeromolecule.github.io/sapni-mi-app-design/)**
+
 ## Setup
 
 Initialize the theme in `main.dart` before `runApp` to preload fonts:

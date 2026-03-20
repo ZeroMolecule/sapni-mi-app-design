@@ -1,0 +1,59 @@
+name: Deploy Widgetbook
+
+on:
+  push:
+    branches: [main]
+
+# Required for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only allow one deployment at a time; cancel any in-progress run
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install design system dependencies
+        run: flutter pub get
+
+      - name: Install widgetbook dependencies
+        working-directory: widgetbook
+        run: flutter pub get
+
+      - name: Generate widgetbook component registry
+        working-directory: widgetbook
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build widgetbook web
+        working-directory: widgetbook
+        run: |
+          flutter build web \
+            --base-href /${{ github.event.repository.name }}/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: widgetbook/build/web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
