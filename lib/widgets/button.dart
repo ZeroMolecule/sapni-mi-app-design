@@ -39,7 +39,10 @@ class Button extends StatelessWidget {
       onPressed: onPressed,
       fillColor: decoration.backgroundColor,
       padding: decoration.padding,
-      shape: RoundedRectangleBorder(borderRadius: decoration.borderRadius),
+      shape: RoundedRectangleBorder(
+        borderRadius: decoration.borderRadius,
+        side: decoration.borderSide ?? BorderSide.none,
+      ),
       child: _Child(icon: icon, decoration: decoration, text: text),
     );
   }
@@ -51,6 +54,7 @@ class ButtonDecoration {
     this.backgroundColor,
     this.foregroundColor,
     this.backgroundGradient,
+    this.borderSide,
     this.padding = const EdgeInsets.symmetric(horizontal: 40, vertical: 26),
     this.spacing = 16.0,
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
@@ -62,6 +66,11 @@ class ButtonDecoration {
         foregroundColor: Color.lerp(a.foregroundColor, b.foregroundColor, t),
         backgroundGradient:
             Gradient.lerp(a.backgroundGradient, b.backgroundGradient, t) as LinearGradient?,
+        borderSide: BorderSide.lerp(
+          a.borderSide ?? BorderSide.none,
+          b.borderSide ?? BorderSide.none,
+          t,
+        ),
         padding: EdgeInsets.lerp(a.padding, b.padding, t)!,
         spacing: lerpDouble(a.spacing, b.spacing, t)!,
         borderRadius: BorderRadius.lerp(a.borderRadius, b.borderRadius, t)!,
@@ -70,6 +79,7 @@ class ButtonDecoration {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final LinearGradient? backgroundGradient;
+  final BorderSide? borderSide;
   final EdgeInsets padding;
   final BorderRadius borderRadius;
   final double spacing;
@@ -78,6 +88,7 @@ class ButtonDecoration {
     Color? backgroundColor,
     Color? foregroundColor,
     LinearGradient? backgroundGradient,
+    BorderSide? borderSide,
     EdgeInsets? padding,
     double? spacing,
     BorderRadius? borderRadius,
@@ -85,6 +96,7 @@ class ButtonDecoration {
     backgroundColor: backgroundColor ?? this.backgroundColor,
     foregroundColor: foregroundColor ?? this.foregroundColor,
     backgroundGradient: backgroundGradient ?? this.backgroundGradient,
+    borderSide: borderSide ?? this.borderSide,
     padding: padding ?? this.padding,
     spacing: spacing ?? this.spacing,
     borderRadius: borderRadius ?? this.borderRadius,
@@ -98,6 +110,7 @@ class ButtonDecoration {
       backgroundColor: other.backgroundColor,
       foregroundColor: other.foregroundColor,
       backgroundGradient: other.backgroundGradient,
+      borderSide: other.borderSide,
       padding: other.padding,
       spacing: other.spacing,
       borderRadius: other.borderRadius,
@@ -113,18 +126,26 @@ class ButtonDecoration {
         other.backgroundColor == backgroundColor &&
         other.foregroundColor == foregroundColor &&
         other.backgroundGradient == backgroundGradient &&
+        other.borderSide == borderSide &&
         other.padding == padding &&
         other.spacing == spacing &&
         other.borderRadius == borderRadius;
   }
 
   @override
-  int get hashCode =>
-      Object.hash(backgroundColor, foregroundColor, backgroundGradient, padding, spacing, borderRadius);
+  int get hashCode => Object.hash(
+    backgroundColor,
+    foregroundColor,
+    backgroundGradient,
+    borderSide,
+    padding,
+    spacing,
+    borderRadius,
+  );
 
   @override
   String toString() =>
-      'ButtonDecoration(backgroundColor: $backgroundColor, foregroundColor: $foregroundColor, backgroundGradient: $backgroundGradient, padding: $padding, spacing: $spacing, borderRadius: $borderRadius)';
+      'ButtonDecoration(backgroundColor: $backgroundColor, foregroundColor: $foregroundColor, backgroundGradient: $backgroundGradient, borderSide: $borderSide, padding: $padding, spacing: $spacing, borderRadius: $borderRadius)';
 }
 
 class _Child extends StatelessWidget {

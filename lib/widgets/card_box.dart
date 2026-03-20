@@ -18,10 +18,10 @@ class CardBox extends StatelessWidget {
     decoration: BoxDecoration(
       boxShadow: Shadows.cardDropdown,
       color: Palette.of(context).cardBackground,
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: Radii.cardAll,
     ),
     child: ClipRRect(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: Radii.cardAll,
       clipBehavior: clipBehavior,
       child: Padding(padding: padding, child: child),
     ),

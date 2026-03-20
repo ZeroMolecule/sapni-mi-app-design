@@ -16,8 +16,9 @@ sealed class SapnimiTheme {
         backgroundColor: palette.primary,
       ),
       secondary: ButtonDecoration(
-        foregroundColor: palette.disabled4,
+        foregroundColor: palette.primary,
         backgroundColor: palette.neutral1,
+        borderSide: BorderSide(color: palette.primary, width: 1.5),
       ),
     );
 

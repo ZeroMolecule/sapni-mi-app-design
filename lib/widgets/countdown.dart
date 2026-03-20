@@ -35,7 +35,7 @@ class Countdown extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
-            style: theme.textStyles.message.copyWith(color: color, fontWeight: FontWeight.w700),
+            style: theme.textStyles.decorative.copyWith(color: color),
           ),
         ],
       ),
