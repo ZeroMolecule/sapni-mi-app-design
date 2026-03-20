@@ -33,7 +33,7 @@ class PromptCard extends StatelessWidget {
               style: theme.textStyles.message.copyWith(color: Palette.warmTaupe),
               textAlign: TextAlign.center,
             ),
-          if (extra != null) extra!,
+          ?extra,
         ],
       ),
     );

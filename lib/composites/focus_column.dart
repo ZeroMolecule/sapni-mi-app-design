@@ -12,9 +12,9 @@ class FocusColumn extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: 12,
     children: [
-      if (header != null) header!,
+      ?header,
       Expanded(child: child),
-      if (footer != null) footer!,
+      ?footer,
     ],
   );
 }
