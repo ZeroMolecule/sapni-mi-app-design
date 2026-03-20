@@ -55,7 +55,10 @@ class ButtonStyles extends ThemeExtension<ButtonStyles> {
     if (other is! ButtonStyles) {
       return this;
     }
-    return ButtonStyles(primary: other.primary, secondary: other.secondary);
+    return ButtonStyles(
+      primary: ButtonDecoration.lerp(primary, other.primary, t),
+      secondary: ButtonDecoration.lerp(secondary, other.secondary, t),
+    );
   }
 }
 

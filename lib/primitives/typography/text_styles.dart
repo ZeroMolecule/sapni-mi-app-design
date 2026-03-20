@@ -48,7 +48,24 @@ abstract class TextStyles extends ThemeExtension<TextStyles> {
   ThemeExtension<TextStyles> copyWith() => this;
 
   @override
-  ThemeExtension<TextStyles> lerp(covariant ThemeExtension<TextStyles>? other, double t) => this;
+  ThemeExtension<TextStyles> lerp(covariant ThemeExtension<TextStyles>? other, double t) {
+    if (other is! TextStyles) {
+      return this;
+    }
+    return _LerpedTextStyles(
+      color: Color.lerp(color, other.color, t),
+      h1: TextStyle.lerp(h1, other.h1, t)!,
+      h2: TextStyle.lerp(h2, other.h2, t)!,
+      subtitle: TextStyle.lerp(subtitle, other.subtitle, t)!,
+      label: TextStyle.lerp(label, other.label, t)!,
+      emailLabel: TextStyle.lerp(emailLabel, other.emailLabel, t)!,
+      message: TextStyle.lerp(message, other.message, t)!,
+      button: TextStyle.lerp(button, other.button, t)!,
+      indicator: TextStyle.lerp(indicator, other.indicator, t)!,
+      countNumber: TextStyle.lerp(countNumber, other.countNumber, t)!,
+      decorative: TextStyle.lerp(decorative, other.decorative, t)!,
+    );
+  }
 
   TextTheme get material => TextTheme(
     displayLarge: h1,
@@ -60,6 +77,22 @@ abstract class TextStyles extends ThemeExtension<TextStyles> {
     labelLarge: button,
     bodyMedium: indicator,
   );
+}
+
+final class _LerpedTextStyles extends TextStyles {
+  const _LerpedTextStyles({
+    required super.h1,
+    required super.h2,
+    required super.subtitle,
+    required super.label,
+    required super.emailLabel,
+    required super.message,
+    required super.button,
+    required super.indicator,
+    required super.countNumber,
+    required super.decorative,
+    super.color,
+  });
 }
 
 class DefaultTextStyles extends TextStyles {
@@ -80,10 +113,4 @@ class DefaultTextStyles extends TextStyles {
         ),
         decorative: GoogleFonts.caveat(fontWeight: FontWeight.w400, fontSize: 46, height: 60 / 46),
       );
-
-  @override
-  ThemeExtension<TextStyles> copyWith() => this;
-
-  @override
-  ThemeExtension<TextStyles> lerp(covariant ThemeExtension<TextStyles>? other, double t) => this;
 }

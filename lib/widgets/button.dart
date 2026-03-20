@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:sapnimi_design/sapnimi_design.dart';
+
+enum _ButtonVariant { primary, secondary }
 
 class Button extends StatelessWidget {
   const Button({
@@ -8,18 +12,28 @@ class Button extends StatelessWidget {
     this.onPressed,
     this.decoration = const ButtonDecoration(),
     super.key,
-  });
+  }) : _variant = _ButtonVariant.primary;
+
+  const Button.secondary({
+    required this.text,
+    this.icon,
+    this.onPressed,
+    this.decoration = const ButtonDecoration(),
+    super.key,
+  }) : _variant = _ButtonVariant.secondary;
 
   final String text;
   final IconData? icon;
   final VoidCallback? onPressed;
   final ButtonDecoration decoration;
+  final _ButtonVariant _variant;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final styles = theme.extension<ButtonStyles>();
-    final decoration = styles?.primary.merge(this.decoration) ?? this.decoration;
+    final base = _variant == _ButtonVariant.secondary ? styles?.secondary : styles?.primary;
+    final decoration = base?.merge(this.decoration) ?? this.decoration;
 
     return RawMaterialButton(
       onPressed: onPressed,
@@ -42,6 +56,17 @@ class ButtonDecoration {
     this.borderRadius = const BorderRadius.all(Radius.circular(10)),
   });
 
+  factory ButtonDecoration.lerp(ButtonDecoration a, ButtonDecoration b, double t) =>
+      ButtonDecoration(
+        backgroundColor: Color.lerp(a.backgroundColor, b.backgroundColor, t),
+        foregroundColor: Color.lerp(a.foregroundColor, b.foregroundColor, t),
+        backgroundGradient:
+            Gradient.lerp(a.backgroundGradient, b.backgroundGradient, t) as LinearGradient?,
+        padding: EdgeInsets.lerp(a.padding, b.padding, t)!,
+        spacing: lerpDouble(a.spacing, b.spacing, t)!,
+        borderRadius: BorderRadius.lerp(a.borderRadius, b.borderRadius, t)!,
+      );
+
   final Color? backgroundColor;
   final Color? foregroundColor;
   final LinearGradient? backgroundGradient;
@@ -55,12 +80,14 @@ class ButtonDecoration {
     LinearGradient? backgroundGradient,
     EdgeInsets? padding,
     double? spacing,
+    BorderRadius? borderRadius,
   }) => ButtonDecoration(
     backgroundColor: backgroundColor ?? this.backgroundColor,
     foregroundColor: foregroundColor ?? this.foregroundColor,
     backgroundGradient: backgroundGradient ?? this.backgroundGradient,
     padding: padding ?? this.padding,
     spacing: spacing ?? this.spacing,
+    borderRadius: borderRadius ?? this.borderRadius,
   );
 
   ButtonDecoration merge(ButtonDecoration? other) {
@@ -73,6 +100,7 @@ class ButtonDecoration {
       backgroundGradient: other.backgroundGradient,
       padding: other.padding,
       spacing: other.spacing,
+      borderRadius: other.borderRadius,
     );
   }
 
@@ -86,16 +114,17 @@ class ButtonDecoration {
         other.foregroundColor == foregroundColor &&
         other.backgroundGradient == backgroundGradient &&
         other.padding == padding &&
-        other.spacing == spacing;
+        other.spacing == spacing &&
+        other.borderRadius == borderRadius;
   }
 
   @override
   int get hashCode =>
-      Object.hash(backgroundColor, foregroundColor, backgroundGradient, padding, spacing);
+      Object.hash(backgroundColor, foregroundColor, backgroundGradient, padding, spacing, borderRadius);
 
   @override
   String toString() =>
-      'ButtonDecoration(backgroundColor: $backgroundColor, foregroundColor: $foregroundColor, backgroundGradient: $backgroundGradient, padding: $padding, spacing: $spacing)';
+      'ButtonDecoration(backgroundColor: $backgroundColor, foregroundColor: $foregroundColor, backgroundGradient: $backgroundGradient, padding: $padding, spacing: $spacing, borderRadius: $borderRadius)';
 }
 
 class _Child extends StatelessWidget {

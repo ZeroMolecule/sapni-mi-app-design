@@ -43,8 +43,8 @@ abstract class Palette extends ThemeExtension<Palette> {
   static const Color cardBackgroundColor = Color(0xFFE8E8E8);
   static const Color vibrantRed = Color(0xFFEF4444);
   static const Color warmTaupe = Color(0xFF7B6E63);
-  static const Color warmTaupe10 = Color(0x1A8B7F75);
-  static const Color warmTaupe40 = Color(0x668B7F75);
+  static const Color warmTaupe10 = Color(0x1A7B6E63);
+  static const Color warmTaupe40 = Color(0x667B6E63);
   static const Color white30 = Color(0x4DFFFFFF);
   static const Color white70 = Color(0xB3FFFFFF);
   static const Color white80 = Color(0xCCFFFFFF);
@@ -75,7 +75,31 @@ abstract class Palette extends ThemeExtension<Palette> {
   Palette copyWith() => this;
 
   @override
-  Palette lerp(ThemeExtension<Palette>? other, double t) => this;
+  Palette lerp(ThemeExtension<Palette>? other, double t) {
+    if (other is! Palette) {
+      return this;
+    }
+    return _LerpedPalette(
+      primary: Color.lerp(primary, other.primary, t)!,
+      secondary: Color.lerp(secondary, other.secondary, t)!,
+      disabled1: Color.lerp(disabled1, other.disabled1, t)!,
+      disabled2: Color.lerp(disabled2, other.disabled2, t)!,
+      disabled3: Color.lerp(disabled3, other.disabled3, t)!,
+      disabled4: Color.lerp(disabled4, other.disabled4, t)!,
+      neutral1: Color.lerp(neutral1, other.neutral1, t)!,
+      opacity1: Color.lerp(opacity1, other.opacity1, t)!,
+      opacity2: Color.lerp(opacity2, other.opacity2, t)!,
+      opacity3: Color.lerp(opacity3, other.opacity3, t)!,
+      opacity4: Color.lerp(opacity4, other.opacity4, t)!,
+      opacity5: Color.lerp(opacity5, other.opacity5, t)!,
+      opacity6: Color.lerp(opacity6, other.opacity6, t)!,
+      other1: Color.lerp(other1, other.other1, t)!,
+      text1: Color.lerp(text1, other.text1, t)!,
+      text2: Color.lerp(text2, other.text2, t)!,
+      text3: Color.lerp(text3, other.text3, t)!,
+      cardBackground: Color.lerp(cardBackground, other.cardBackground, t)!,
+    );
+  }
 
   ColorScheme get material => ColorScheme(
     primary: primary,
@@ -90,6 +114,29 @@ abstract class Palette extends ThemeExtension<Palette> {
     onError: white80,
     brightness: Brightness.light,
   );
+}
+
+final class _LerpedPalette extends Palette {
+  const _LerpedPalette({
+    required super.primary,
+    required super.secondary,
+    required super.disabled1,
+    required super.disabled2,
+    required super.disabled3,
+    required super.disabled4,
+    required super.neutral1,
+    required super.opacity1,
+    required super.opacity2,
+    required super.opacity3,
+    required super.opacity4,
+    required super.opacity5,
+    required super.opacity6,
+    required super.other1,
+    required super.text1,
+    required super.text2,
+    required super.text3,
+    required super.cardBackground,
+  });
 }
 
 class LightPalette extends Palette {
