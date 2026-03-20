@@ -17,13 +17,11 @@ class WidgetbookApp extends StatelessWidget {
     final lightTheme = WidgetbookTheme(name: 'light', data: SapnimiTheme.light);
     return Widgetbook.material(
       directories: directories,
-      themeMode: ThemeMode.light,
-      lightTheme: lightTheme.data,
       addons: [
         MaterialThemeAddon(initialTheme: lightTheme, themes: [lightTheme]),
         BuilderAddon(
           name: 'Background',
-          builder: (context, child) => ColoredBox(color: const Color(0xFFFF0000), child: child),
+          builder: (context, child) => ColoredBox(color: Palette.softLinen, child: child),
         ),
         AlignmentAddon(),
       ],

@@ -17,18 +17,8 @@ Widget buildPromptCard(BuildContext context) {
     description: context.knobs.stringOrNull(label: 'Description'),
     extra: ButtonsRow(
       buttons: [
-        if (secondaryButton != null)
-          Button(
-            text: secondaryButton,
-            onPressed: () {},
-            decoration: Theme.of(context).buttonStyles.secondary,
-          ),
-        if (primaryButton != null)
-          Button(
-            text: primaryButton,
-            onPressed: () {},
-            decoration: Theme.of(context).buttonStyles.primary,
-          ),
+        if (secondaryButton != null) Button.secondary(text: secondaryButton, onPressed: () {}),
+        if (primaryButton != null) Button(text: primaryButton, onPressed: () {}),
       ],
     ),
   );

@@ -19,10 +19,22 @@ import 'package:widgetbook_workspace/composites/focus_scaffold.dart'
     as _widgetbook_workspace_composites_focus_scaffold;
 import 'package:widgetbook_workspace/composites/prompt_card.dart'
     as _widgetbook_workspace_composites_prompt_card;
+import 'package:widgetbook_workspace/composites/prompt_column.dart'
+    as _widgetbook_workspace_composites_prompt_column;
 import 'package:widgetbook_workspace/composites/prompt_scaffold.dart'
     as _widgetbook_workspace_composites_prompt_scaffold;
+import 'package:widgetbook_workspace/primitives/colors.dart'
+    as _widgetbook_workspace_primitives_colors;
+import 'package:widgetbook_workspace/primitives/gradients.dart'
+    as _widgetbook_workspace_primitives_gradients;
+import 'package:widgetbook_workspace/primitives/spacing.dart'
+    as _widgetbook_workspace_primitives_spacing;
+import 'package:widgetbook_workspace/primitives/typography.dart'
+    as _widgetbook_workspace_primitives_typography;
 import 'package:widgetbook_workspace/widgets/button.dart'
     as _widgetbook_workspace_widgets_button;
+import 'package:widgetbook_workspace/widgets/buttons_row.dart'
+    as _widgetbook_workspace_widgets_buttons_row;
 import 'package:widgetbook_workspace/widgets/card_box.dart'
     as _widgetbook_workspace_widgets_card_box;
 import 'package:widgetbook_workspace/widgets/countdown.dart'
@@ -33,6 +45,12 @@ import 'package:widgetbook_workspace/widgets/dots_divider.dart'
     as _widgetbook_workspace_widgets_dots_divider;
 import 'package:widgetbook_workspace/widgets/fading_widget.dart'
     as _widgetbook_workspace_widgets_fading_widget;
+import 'package:widgetbook_workspace/widgets/gradient_scaffold.dart'
+    as _widgetbook_workspace_widgets_gradient_scaffold;
+import 'package:widgetbook_workspace/widgets/indicator.dart'
+    as _widgetbook_workspace_widgets_indicator;
+import 'package:widgetbook_workspace/widgets/loading_indicator.dart'
+    as _widgetbook_workspace_widgets_loading_indicator;
 import 'package:widgetbook_workspace/widgets/prompt_title.dart'
     as _widgetbook_workspace_widgets_prompt_title;
 import 'package:widgetbook_workspace/widgets/step_indicator.dart'
@@ -85,6 +103,16 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookComponent(
+        name: 'PromptColumn',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Prompt Column',
+            builder: _widgetbook_workspace_composites_prompt_column
+                .buildPromptColumn,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
         name: 'PromptScaffold',
         useCases: [
           _widgetbook.WidgetbookUseCase(
@@ -97,14 +125,75 @@ final directories = <_widgetbook.WidgetbookNode>[
     ],
   ),
   _widgetbook.WidgetbookFolder(
+    name: 'primitives',
+    children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'ColorPaletteShowcase',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Colors',
+            builder: _widgetbook_workspace_primitives_colors.buildColorPalette,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'GradientShowcase',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Gradients',
+            builder: _widgetbook_workspace_primitives_gradients.buildGradients,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'SpacingShowcase',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Spacing',
+            builder: _widgetbook_workspace_primitives_spacing.buildSpacing,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'TypographyShowcase',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Typography',
+            builder:
+                _widgetbook_workspace_primitives_typography.buildTypography,
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
     name: 'widgets',
     children: [
       _widgetbook.WidgetbookComponent(
         name: 'Button',
         useCases: [
           _widgetbook.WidgetbookUseCase(
-            name: 'Button',
+            name: 'Primary',
             builder: _widgetbook_workspace_widgets_button.buildButton,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Secondary',
+            builder: _widgetbook_workspace_widgets_button.buildSecondaryButton,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'ButtonsRow',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Primary + Secondary',
+            builder: _widgetbook_workspace_widgets_buttons_row
+                .buildButtonsRowPrimarySecondary,
+          ),
+          _widgetbook.WidgetbookUseCase(
+            name: 'Single button',
+            builder:
+                _widgetbook_workspace_widgets_buttons_row.buildButtonsRowSingle,
           ),
         ],
       ),
@@ -158,6 +247,35 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Fading Text',
             builder:
                 _widgetbook_workspace_widgets_fading_widget.buildFadingText,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'GradientScaffold',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Gradient Scaffold',
+            builder: _widgetbook_workspace_widgets_gradient_scaffold
+                .buildGradientScaffold,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'Indicator',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Indicator',
+            builder: _widgetbook_workspace_widgets_indicator.buildIndicator,
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookComponent(
+        name: 'LoadingIndicator',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'Loading Indicator',
+            builder: _widgetbook_workspace_widgets_loading_indicator
+                .buildLoadingIndicator,
           ),
         ],
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sapnimi_design/sapnimi_design.dart';
-import 'package:sapnimi_design/widgets/gradient_scaffold.dart';
 
 class PromptScaffold extends StatelessWidget {
   const PromptScaffold({required this.text, required this.child, super.key});

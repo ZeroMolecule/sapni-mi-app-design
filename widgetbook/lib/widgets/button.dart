@@ -4,7 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_workspace/utils.dart';
 
-@UseCase(name: 'Button', type: Button)
+@UseCase(name: 'Primary', type: Button)
 Widget buildButton(BuildContext context) => Button(
   decoration: ButtonDecoration(
     foregroundColor: context.knobs.colorOrNull(label: 'Foreground color'),
@@ -24,6 +24,19 @@ Widget buildButton(BuildContext context) => Button(
   ),
   onPressed: context.knobs.boolean(label: 'Enabled', initialValue: true) ? () {} : null,
   text: context.knobs.string(label: 'Text', initialValue: 'Button'),
+  icon: context.knobs.objectOrNull
+      .dropdown<SapnimiIcon>(
+        label: 'Icon',
+        options: SapnimiIcon.values,
+        labelBuilder: (it) => it.name,
+      )
+      ?.iconData,
+);
+
+@UseCase(name: 'Secondary', type: Button)
+Widget buildSecondaryButton(BuildContext context) => Button.secondary(
+  onPressed: context.knobs.boolean(label: 'Enabled', initialValue: true) ? () {} : null,
+  text: context.knobs.string(label: 'Text', initialValue: 'Cancel'),
   icon: context.knobs.objectOrNull
       .dropdown<SapnimiIcon>(
         label: 'Icon',

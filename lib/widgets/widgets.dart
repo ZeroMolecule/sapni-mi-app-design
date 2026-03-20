@@ -5,6 +5,7 @@ export 'countdown.dart';
 export 'decorated_icon.dart';
 export 'dots_divider.dart';
 export 'fading_widget.dart';
+export 'gradient_scaffold.dart';
 export 'indicator.dart';
 export 'loading_indicator.dart';
 export 'prompt_title.dart';

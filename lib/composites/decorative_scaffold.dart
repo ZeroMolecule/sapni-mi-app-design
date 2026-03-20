@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sapnimi_design/sapnimi_design.dart';
-import 'package:sapnimi_design/widgets/gradient_scaffold.dart';
 
 class DecorativeScaffold extends StatelessWidget {
   const DecorativeScaffold({
