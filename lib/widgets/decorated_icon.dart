@@ -9,7 +9,7 @@ class DecoratedIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
     mainAxisSize: MainAxisSize.min,
-    spacing: 12,
+    spacing: Spacing.sm,
     children: [
       const _Divider(),
       _Icon(icon: icon, size: 60),
@@ -47,5 +47,5 @@ class _Divider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      SizedBox(width: 48, child: Divider(height: 1, color: Palette.of(context).opacity2));
+      SizedBox(width: Spacing.xxxl, child: Divider(height: 1, color: Palette.of(context).opacity2));
 }

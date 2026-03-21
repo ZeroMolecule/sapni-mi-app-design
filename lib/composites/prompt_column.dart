@@ -16,7 +16,7 @@ class PromptColumn extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.symmetric(horizontal: 36),
             child: Row(
-              spacing: 24,
+              spacing: Spacing.lg,
               children: [for (final button in buttons!) Expanded(child: button)],
             ),
           ),

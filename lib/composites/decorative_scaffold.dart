@@ -22,12 +22,12 @@ class DecorativeScaffold extends StatelessWidget {
   Widget build(BuildContext context) => GradientScaffold(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      spacing: 12,
+      spacing: Spacing.sm,
       children: [
         Expanded(
           flex: 3,
           child: Padding(
-            padding: const EdgeInsets.only(left: 32, bottom: 32, top: 32),
+            padding: const EdgeInsets.only(left: Spacing.xl, bottom: Spacing.xl, top: Spacing.xl),
             child: _Child(icon: icon, title: title, text: text, action: action),
           ),
         ),
@@ -50,7 +50,7 @@ class _Child extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      spacing: 12,
+      spacing: Spacing.sm,
       children: [
         DecoratedIcon(icon: icon),
         Text(

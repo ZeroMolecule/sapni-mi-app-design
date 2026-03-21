@@ -11,7 +11,7 @@ class PromptTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return CardBox(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: Spacing.xxl, vertical: 20),
       child: AutoSizeText(
         text,
         style: theme.textStyles.h2.copyWith(color: theme.palette.primary),

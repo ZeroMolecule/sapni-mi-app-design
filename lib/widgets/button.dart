@@ -55,9 +55,9 @@ class ButtonDecoration {
     this.foregroundColor,
     this.backgroundGradient,
     this.borderSide,
-    this.padding = const EdgeInsets.symmetric(horizontal: 40, vertical: 26),
-    this.spacing = 16.0,
-    this.borderRadius = const BorderRadius.all(Radius.circular(10)),
+    this.padding = const EdgeInsets.symmetric(horizontal: Spacing.xxl, vertical: 26),
+    this.spacing = Spacing.md,
+    this.borderRadius = Radii.mdAll,
   });
 
   factory ButtonDecoration.lerp(ButtonDecoration a, ButtonDecoration b, double t) =>

@@ -4,7 +4,7 @@ import 'package:sapnimi_design/sapnimi_design.dart';
 class CardBox extends StatelessWidget {
   const CardBox({
     required this.child,
-    this.padding = const EdgeInsets.all(40),
+    this.padding = const EdgeInsets.all(Spacing.xxl),
     this.clipBehavior = Clip.hardEdge,
     super.key,
   });

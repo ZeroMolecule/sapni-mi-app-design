@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:sapnimi_design/primitives/spacing.dart';
 import 'package:sapnimi_design/widgets/gradient_scaffold.dart';
 
 class FocusScaffold extends StatelessWidget {
   const FocusScaffold({
     required this.child,
-    this.padding = const EdgeInsets.symmetric(horizontal: 60, vertical: 48),
+    this.padding = const EdgeInsets.symmetric(horizontal: Spacing.section, vertical: Spacing.xxxl),
     super.key,
   });
 

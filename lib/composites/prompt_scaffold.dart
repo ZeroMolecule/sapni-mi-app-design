@@ -10,9 +10,9 @@ class PromptScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GradientScaffold(
     child: Padding(
-      padding: const EdgeInsets.only(left: 38, right: 38, top: 16, bottom: 24),
+      padding: const EdgeInsets.only(left: 38, right: 38, top: Spacing.md, bottom: Spacing.lg),
       child: Column(
-        spacing: 24,
+        spacing: Spacing.lg,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           PromptTitle(text: text),
